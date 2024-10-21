@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash, ses
 import sqlite3
 import re
 
+# update
 app = Flask(__name__)
 app.secret_key = "your_secret_key"
 
@@ -25,6 +26,7 @@ init_sqlite_db()
 
 # have problems
 # Registration
+@app.route("/")
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
