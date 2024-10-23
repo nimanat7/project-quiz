@@ -1,8 +1,7 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, session
+from flask import Flask, render_template, request, redirect, url_for, session, flash
 import sqlite3
 import re
 
-# update
 app = Flask(__name__)
 app.secret_key = "your_secret_key"
 
@@ -24,44 +23,43 @@ def init_sqlite_db():
 init_sqlite_db()
 
 
-# have problems
 # Registration
-
-
-@app.route("/")
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
 
+        # Password pattern validation
         password_pattern = re.compile(r"^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$")
 
         if not password_pattern.match(password):
-            flash(
-                "Password must be at least 8 characters, contain at least one number, one capital letter and one special symbol!"
+            print(
+                "Password must be at least 8 characters, contain at least one number, one capital letter, and one special symbol."
             )
             return render_template("register.html")
 
         conn = sqlite3.connect("users.db")
         cursor = conn.cursor()
 
+        # Check if the username already exists
         cursor.execute("SELECT * FROM users WHERE username = ?", (username,))
         existing_user = cursor.fetchone()
 
         if existing_user:
-            flash("This username is already registered!")
+            print("This username is already registered.")
             return render_template("register.html")
 
+        # If everything is fine, insert the new user
         try:
             cursor.execute(
                 "INSERT INTO users (username, password) VALUES (?, ?)",
                 (username, password),
             )
             conn.commit()
-            flash("Registration was successful.Now You can login.")
+            print("Registration was successful. You can login.")
         except Exception as e:
-            flash(f"Error occurred: {str(e)}")
+            print(f"Error occurred: {str(e)}")
         finally:
             conn.close()
 
@@ -70,8 +68,6 @@ def register():
     return render_template("register.html")
 
 
-# have problems
-# user login
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -94,7 +90,7 @@ def login():
             session["username"] = username
             return redirect(url_for("dashboard"))
         else:
-            flash("Username or password is incorrect!")
+            flash("Username or password is incorrect.")
 
     return render_template("login.html")
 
