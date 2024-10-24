@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="fa">
+<head>
+    <meta charset="utf-8">
+    <title>{{ question.text }}</title>
+</head>
+<body>
+    <h2>{{ question.text }}</h2>
+    <form method="POST">
+        <ul>
+            <li><input type="radio" name="answer" value="option1">{{ question.option1 }}</li>
+            <li><input type="radio" name="answer" value="option2">{{ question.option2 }}</li>
+            <li><input type="radio" name="answer" value="option3">{{ question.option3 }}</li>
+            <li><input type="radio" name="answer" value="option4">{{ question.option4 }}</li>
+        </ul>
+        <button type="submit">ارسال</button>
+        <li>
+        <button type="submit" onclick="return confirm('پاسخی وارد نکردید! خارج می شوید؟')">خروج</button>
+        </li>
+        <a href="/">بازگشت به صفحه اصلی</a>
+    </form>
+</body>
+</html>
