@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="fa">
+<head>
+    <meta charset="utf-8">
+    <title>مدیریت سوالات</title>
+    <a href="{{ url_for('add_question') }}">اضافه کردن سوال جدید</a>
+</head>
+<body>
+    <h1>لیست سوالات</h1>
+    <ul>
+        {% for question in questions %}
+        <li><a href="{{ url_for('question', question_id=question.id) }}">{{ question.text }}</a></li>
+        {% endfor %}
+        <ul>
+        {% for question in questions %}
+        <li>
+            <a href="{{ url_for('question', question_id=question.id) }}">{{ question.text }}</a>
+            <form action="{{ url_for('delete_question', question_id=question.id) }}" method="POST" style="display:inline;">
+                <button type="submit" onclick="return confirm('آیا از حذف این سوال اطمینان دارید؟');">حذف</button>
+            </form>
+        </li>
+        {% endfor %}
+        </ul>
+    </ul>
+</body>
+</html>
