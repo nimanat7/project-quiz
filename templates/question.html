@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="fa">
+<head>
+    <meta charset="utf-8">
+    <title>{{ question.text }}</title>
+</head>
+<body>
+    <h2>{{ question.text }}</h2>
+    <form method="POST">
+        <ul>
+            <li><label >{{ question.option1 }}</li>
+            <li><label >{{ question.option2 }}</li>
+            <li><label >{{ question.option3 }}</li>
+            <li><label >{{ question.option4 }}</li>
+            <form action="{{ url_for('delete_question', question_id=question.id) }}" method="POST" style="display:inline;">
+                <button style="background-color:#ff0000c7" type="submit" onclick="return confirm('آیا از حذف این سوال اطمینان دارید؟');">حذف</button>
+            </form>
+            <form action="{{ url_for('edit_question', question_id=question.id) }}" method="POST" style="display:inline;">
+                <button style="background-color:#d0ff00c7" type="submit">ادیت</button>
+            </form>
+        </ul>
+        <a href="/question">بازگشت به صفحه سوالات</a>
+    </form>
+</body>
+</html>
