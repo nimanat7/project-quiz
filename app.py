@@ -2,14 +2,14 @@ from flask import Flask, render_template, request, redirect, url_for, flash, ses
 from models import db, Question
 import sqlite3
 import re
-
+import random
 
 '''Fatemeh code:'''
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///questions.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
-#hello
+
 with app.app_context():
     db.create_all()
 #Questions show
@@ -54,7 +54,7 @@ def add_question():
                                 correct_answer=correct_answer,category=category)
         db.session.add(new_question)
         db.session.commit()
-        return redirect('/question')
+        return redirect('/add_question')
     return render_template('add_question.html')
 
 @app.route('/delete_question/<int:question_id>', methods=['POST'])
@@ -199,8 +199,39 @@ def dashboard():
         return f"welcome , {session['username']}!"
     else:
         return redirect(url_for("login"))
+    
+@app.route('/user_question')
+def index_question():
+       return render_template('index_question.html')
 
+@app.route('/quiz', methods=['POST'])
+def quiz():
+        category_id = request.form['category']
+        num_questions = int(request.form['num_questions'])
+        questions = Question.query.filter_by(category=category_id).all()
+        question_random=list()
+        for question in questions:
+            question_random.append(question.id)
+        random_choice=random.sample(question_random,k=num_questions)
+
+        questions = Question.query.filter(Question.id.in_(random_choice)).all()
+        return render_template('quiz.html', questions=questions)
+
+@app.route('/result', methods=['POST'])
+def result():
+       score = 0
+       total_questions = len(request.form)
+       for key in request.form:
+           if key.startswith('question_'):
+               question_id = key.split('_')[1]
+               selected_option = request.form[key]
+               question = Question.query.get(question_id)
+               print(selected_option)
+               if selected_option == question.correct_answer:
+                   score += 1
+
+       return render_template('result.html', score=score, total_questions=total_questions)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+        app.run(debug=True)
 
