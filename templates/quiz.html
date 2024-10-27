@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+{% extends "layout.html" %}
+{% block content %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>
 </head>
-<body>
+<body align='center' style="background-color: #3a3a3ab0;">
     <h1>Quiz Questions</h1>
     <form action="/result" method="POST">
         {% for question in questions %}
@@ -19,7 +20,13 @@
             {% endfor %}
             <button type="submit">Submit</button>
         </form>
-    </body>
-    </html>
+</body>
+</html>
+{% endblock %}
+{% block nav %}
+<li><a href="/user_question">Start the quiz</a></li>
+<li><a href="selectstats">Show stats</a></li>
+{% endblock %}
     
+
     

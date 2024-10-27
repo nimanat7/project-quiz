@@ -1,53 +1,61 @@
 <!doctype html>
-<html lang="fa">
+{% extends "layout.html" %}
+{% block content %}
+<html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>اضافه کردن سوال</title>
+    <title>Add Question</title>
 </head>
-<body  align='center'>
-    <h1 align='center'>لطفا سوال جدید وارد کنید</h1>
+<body  align='center' style="background-color: #3a3a3ab0;">
+    <h1 align='center'>Plese enter informations</h1>
     <form method="POST">
+        <label for="category">Category:</label>
         <select id='category' name="category" required>
-            <option value="">لطفا انتخاب کنید</option>
-            <option value="math">ریاضی</option>
-            <option value="movie">فیلم و سریال</option>
-            <option value="soccer">فوتبال</option>
-            <option value="game">گیم</option>
-            <option value="historical">تاریخ</option>
-            <option value="general_information">اطلاعات عمومی</option>
-            <option value="english">زبان</option>
+            <option value="" selected>Please choose</option>
+            <option value="math">Math</option>
+            <option value="movie">Movie</option>
+            <option value="soccer">Soccer</option>
+            <option value="game">Game</option>
+            <option value="historical">History</option>
+            <option value="general_information">General information</option>
         </select>
-        <label for="category">:دسته بندی</label><br>
+        <br><label for="text">Question:</label><br>
+        <textarea cols='35' rows='3'style="resize: none;text-align: left;" type="text" id="text" name="text" required></textarea><br><br>
+        <label for="option1">Option 1:</label><br>
+        <textarea cols='35' style="resize: none;text-align: left;" type="text" id="option1" name="option1" required></textarea><br><br>
+        <label for="option2">Option 2:</label><br>
+        <textarea cols='35' style="resize: none;text-align: left;" type="text" id="option2" name="option2" required></textarea><br><br>
+        <label for="option3">Option 3:</label><br>
+        <textarea cols='35' style="resize: none;text-align: left;" type="text" id="option3" name="option3" required></textarea><br><br>
+        <label for="option4">Option 4:</label><br>
+        <textarea cols='35' style="resize: none;text-align: left;" type="text" id="option4" name="option4" required></textarea><br><br>
+        <label for="correct_answer">Correct answer:</label><br>
 
-        <label for="text">متن سوال:</label><br>
-        <textarea cols='35' rows='3'style="resize: none;text-align: right;" type="text" id="text" name="text" required></textarea><br><br>
-
-        <label for="option1">گزینه 1:</label><br>
-        <textarea cols='35' style="resize: none;text-align: right;" type="text" id="option1" name="option1" required></textarea><br><br>
-
-        <label for="option2">گزینه 2:</label><br>
-        <textarea cols='35' style="resize: none;text-align: right;" type="text" id="option2" name="option2" required></textarea><br><br>
-
-        <label for="option3">گزینه 3:</label><br>
-        <textarea cols='35' style="resize: none;text-align: right;" type="text" id="option3" name="option3" required></textarea><br><br>
-
-        <label for="option4">گزینه 4:</label><br>
-        <textarea cols='35' style="resize: none;text-align: right;" type="text" id="option4" name="option4" required></textarea><br><br>
-
-        <label for="correct_answer">پاسخ صحیح:</label><br>
-        <div class="btn-group-vertical" role="group" aria-label="Vertical radio toggle button group">
+        <nobr><div class="btn-group-vertical" role="group" aria-label="Vertical radio toggle button group">
+            <label class="btn btn-outline-danger" for="correct_answer1">Option 1</label>
             <input type="radio" class="btn-check" name="correct_answer" value="1" id="correct_answer1" autocomplete="off" checked>
-            <label class="btn btn-outline-danger" for="correct_answer1">گزینه 4</label>
-            <input type="radio" class="btn-check" name="correct_answer" value="4" id="correct_answer2" autocomplete="off">
-            <label class="btn btn-outline-danger" for="correct_answer2">گزینه 3</label>
+            <label class="btn btn-outline-danger" for="correct_answer2">Option 2</label>
+            <input type="radio" class="btn-check" name="correct_answer" value="2" id="correct_answer2" autocomplete="off">
+            <label class="btn btn-outline-danger" for="correct_answer3">Option 3</label>
             <input type="radio" class="btn-check" name="correct_answer" value="3" id="correct_answer3" autocomplete="off">
-            <label class="btn btn-outline-danger" for="correct_answer3">گزینه 2</label>
-            <input type="radio" class="btn-check" name="correct_answer" value="2" id="correct_answer4" autocomplete="off">
-            <label class="btn btn-outline-danger" for="correct_answer4">گزینه 1</label>
+            <label class="btn btn-outline-danger" for="correct_answer4">Option 4</label>
+            <input type="radio" class="btn-check" name="correct_answer" value="4" id="correct_answer4" autocomplete="off"></nobr>
         </div>
-        <button type="submit">اضافه کردن سوال</button>
+        <br>
+        {% with messages = get_flashed_messages() %} {% if messages %} {% for
+            message in messages %}
+            <p style="color: rgba(5, 236, 5, 0.856)">{{ message }}</p>
+            {% endfor %} {% endif %} {% endwith %}
+        <input type="submit" name="submit_button" value="Add Question"></input>
     </form>
-    <br>
-    <a href="/question">بازگشت به صفحه سوالات</a>
+    <button onclick="document.location='/question'">Question lists</button>
 </body>
 </html>
+{% endblock %}
+{% block logout %}
+<li><a href="{{ url_for('admin_logout') }}" onclick="return confirm('Do you want Logout from your account?');" style="color: rgb(180, 68, 68);"><span class="glyphicon glyphicon-log-in" style="color: red;"></span> Logout</a></li>
+{% endblock %}
+{% block nav %}
+    <li><a href="/question">Question list</a></li>
+    <li><a href="/add_question">Add Question</a></li>
+{% endblock %}

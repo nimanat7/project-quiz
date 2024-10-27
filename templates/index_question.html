@@ -1,23 +1,24 @@
 <!DOCTYPE html>
+{% extends "layout.html" %}
+{% block content %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz App</title>
 </head>
-<body>
+<body align='center' style="background-color: #3a3a3ab0;">
     <h1>Select Category and Number of Questions</h1>
     <form action="/quiz" method="POST">
         <label for="category">Choose a category:</label>
         <select name="category" id="category" required>
-            <option value="">لطفا انتخاب کنید</option>
-            <option value="math">ریاضی</option>
-            <option value="movie">فیلم و سریال</option>
-            <option value="soccer">فوتبال</option>
-            <option value="game">گیم</option>
-            <option value="historical">تاریخ</option>
-            <option value="general_information">اطلاعات عمومی</option>
-            <option value="english">زبان</option>
+            <option value="">Please choose category</option>
+            <option value="math">Math</option>
+            <option value="movie">Movie</option>
+            <option value="soccer">Soccer</option>
+            <option value="game">Game</option>
+            <option value="historical">History</option>
+            <option value="general_information">General information</option>
         </select>
         <br>
         <label for="num_questions">Number of Questions (max 10):</label>
@@ -27,5 +28,10 @@
     </form>
 </body>
 </html>
+{% endblock %}
+{% block nav %}
+  <li><a href="/user_question">Start the quiz</a></li>
+  <li><a href="selectstats">Show stats</a></li>
+{% endblock %}
 
 

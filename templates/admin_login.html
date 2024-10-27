@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Login</title>
+</head>
+<body align="center" style="background-color: #3a3a3ab0;">
+    <h1>Admin Login</h1>
+    <form method="POST">
+        <label for="username">Admin Username:</label>
+        <input type="text" name="admin_username" required />
+        <br /><br>
+        <label for="password">Admin Password:</label>
+        <input type="password" name="admin_password" required />
+        <br />
+        <p>
+            {% with messages = get_flashed_messages() %} 
+            {% if messages %} 
+                {% for message in messages %} 
+                    <p style="color: red;">{{ message }}</p>
+                {% endfor %} 
+            {% endif %} 
+            {% endwith %}
+        </p>
+        <button type="submit">Login</button>
+    </form>
+    <p><a href="{{ url_for('register') }}">Back to Register</a></p>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!doctype html>
+{% extends "layout.html" %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+</head>
+<body align='center' style="background-color: #3a3a3ab0;">
+    <h1>Edit Your Profile</h1>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p style="color: red;">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <form method="POST" action="{{ url_for('edit_profile') }}">
+        <label for="username">New Username:</label>
+        <input type="text" id="username" name="username" value="{{ username }}" required>
+        <br><br>
+
+        <label for="password">New Password:</label>
+        <input type="password" id="password" name="password" required>
+        <br><br>
+
+        <button type="submit">Save Changes</button>
+    </form>
+
+    <br>
+    <a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+</body>
+</html>
+{% endblock %}
+{% block nav %}
+  <li><a href="/user_question">Start the quiz</a></li>
+  <li><a href="selectstats">Show stats</a></li>
+{% endblock %}

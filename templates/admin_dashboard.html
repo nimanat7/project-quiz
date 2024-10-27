@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% extends "layout.html" %}
+{% block content %}
+<html lang="en" >
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+  </head>
+  <body align="center" style="background-color: #3a3a3ab0;">
+    <h1>Welcome to the Admin Dashboard!</h1>
+    {% with messages = get_flashed_messages() %} {% if messages %} {% for
+    message in messages %}
+    <p style="color: rgba(0, 255, 0, 0.788)">{{ message }}</p>
+    {% endfor %} {% endif %} {% endwith %}
+    <br />
+  </body>
+</html>
+{% endblock %}
+{% block logout %}
+<li><a href="{{ url_for('admin_logout') }}" onclick="return confirm('Do you want Logout from your account?');" style="color: rgb(180, 68, 68);"><span class="glyphicon glyphicon-log-in" style="color: red;"></span> Logout</a></li>
+{% endblock %}
+{% block nav %}
+    <li><a href="/question">Question list</a></li>
+    <li><a href="/add_question">Add Question</a></li>
+{% endblock %}

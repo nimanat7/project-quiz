@@ -5,24 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
   </head>
-  <body>
+  <body align="center" style="background-color: #3a3a3ab0;">
     <h1>Login</h1>
 
     <form method="POST">
       <label for="username">Username:</label>
       <input type="text" name="username" required />
-      <br />
+      <br /><br>
       <label for="password">Password:</label>
       <input type="password" name="password" required />
       <br />
       <p>
     {% with messages = get_flashed_messages() %} 
       {% if messages %}
-        
           {% for message in messages %}
           <p style="color: red;">{{ message }} </p>
           {% endfor %}
-        
       {% endif %}   
     {% endwith %}
       </p>

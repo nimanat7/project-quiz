@@ -1,0 +1,26 @@
+<!doctype html>
+{% extends "layout.html" %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Show {{ category }} Stats</title>
+</head>
+<body align='center' style="background-color: #3a3a3ab0;">
+    <h1>{{ category }} Quizes Stats</h1>
+        <br>
+        <br>
+        <br>
+        {% for question in questions %}
+          <p>Date: {{ question.4 }} Category: {{ question.1 }} Score: {{ question.2 }}/{{ question.3 }}</p> 
+          <br>
+        {% endfor %}
+        </ul>
+    </ul>
+</body>
+</html>
+{% endblock %}
+{% block nav %}
+  <li><a href="/user_question">Start the quiz</a></li>
+  <li><a href="selectstats">Show stats</a></li>
+{% endblock %}

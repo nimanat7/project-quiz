@@ -4,10 +4,10 @@
 <html align="center" lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Manage Question</title>
+    <title>Stats Category</title>
 </head>
 <body style="background-color: #3a3a3ab0;">
-    <h1>Manage and view questions</h1>
+    <h1>View Your Stats</h1>
     <form method="POST">
             <label for="category">Category:</label>
         <select id='category' name="category" required>
@@ -27,10 +27,7 @@
 </body>
 </html>
 {% endblock %}
-{% block logout %}
-<li><a href="{{ url_for('admin_logout') }}" onclick="return confirm('Do you want Logout from your account?');" style="color: rgb(180, 68, 68);"><span class="glyphicon glyphicon-log-in" style="color: red;"></span> Logout</a></li>
-{% endblock %}
 {% block nav %}
-    <li><a href="/question">Question list</a></li>
-    <li><a href="/add_question">Add Question</a></li>
+  <li><a href="user_question">Start the quiz</a></li>
+  <li><a href="selectstats">Show stats</a></li>
 {% endblock %}

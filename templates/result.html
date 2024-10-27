@@ -1,13 +1,18 @@
 <!DOCTYPE html>
+{% extends "layout.html" %}
+{% block content %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Result</title>
 </head>
-<body>
+<body style="background-color: #3a3a3ab0;">
     <h1>Your Score: {{ score }} out of {{ total_questions }}</h1>
-    <a href="/">Take another quiz</a>
+    <a href="/user_question">Take another quiz</a>
 </body>
 </html>
-
+{% endblock %}
+{% block nav %}
+  <li><a href="/user_question">Start the quiz</a></li>
+  <li><a href="selectstats">Show stats</a></li>
+{% endblock %}

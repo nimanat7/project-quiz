@@ -1,0 +1,57 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<nav class="navbar navbar-inverse">
+  <img src="https://lh3.googleusercontent.com/a/ACg8ocLzokgrwjbYLjObSLUag1zOHqzi4r1-Z80ClcsRc_bSIedZI6s=s288-c-no" width="50" height="50" alt="" align="left">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" style="margin-left: 0px;" >G7 Quiz</a>
+      </div>
+      <ul class="nav navbar-nav">
+        {% block nav %}
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Page 1</a></li>
+        {% endblock %}
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+        {% block logout %}<li><a href="/edit_profile"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+        <li><a href="{{ url_for('logout') }}" onclick="return confirm('Do you want Logout from your account?');" style="color: rgb(180, 68, 68);"><span class="glyphicon glyphicon-log-in" style="color: red;"></span> Logout</a></li>{% endblock %}
+      </ul>
+    </div>
+</nav>
+{% block content %}
+{% endblock %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<footer align='center' style="background-color: #1b1b1b">
+    <p style="color:rgba(240, 248, 255, 0.671)">Creators : QBC7 Python G7</p>
+    <p style="color:rgba(240, 248, 255, 0.404)">Nazanin Fatemi</p>
+    <p style="color:rgba(240, 248, 255, 0.404)">Mohammad Mehdi Monsef</p>
+    <p style="color:rgba(240, 248, 255, 0.404)">Nima Nateghi</p>
+    <p style="color:rgba(240, 248, 255, 0.404)">Fatemeh Hadizadeh</p>
+    <p style="color:rgba(240, 248, 255, 0.671)">Email: <a href="mailto:qbc7.python.g7@gmail.com">qbc7.python.g7@gmail.com</a></p>
+</footer>
