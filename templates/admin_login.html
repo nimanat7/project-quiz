@@ -1,30 +1,118 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Login</title>
+<title>Admin Login</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #3a3a3ab0;
+}
+
+form {
+  border: 5px solid #f1f1f1;
+  width: 400px;
+  margin: 5% auto;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 10px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.switch {
+  width: auto;
+  padding: 10px;
+  background-color: #f436c5;
+}
+
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+
+img.avatar {
+  width: 60px;
+  border-radius: 50%;
+}
+
+.container {
+  padding: 10px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+
+@media screen and (max-width: 300px) {
+  form {
+    width: 90%;
+  }
+  span.psw {
+     display: block;
+     float: none;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+}
+</style>
 </head>
-<body align="center" style="background-color: #3a3a3ab0;">
-    <h1>Admin Login</h1>
-    <form method="POST">
-        <label for="username">Admin Username:</label>
-        <input type="text" name="admin_username" required />
-        <br /><br>
-        <label for="password">Admin Password:</label>
-        <input type="password" name="admin_password" required />
-        <br />
-        <p>
-            {% with messages = get_flashed_messages() %} 
-            {% if messages %} 
-                {% for message in messages %} 
-                    <p style="color: red;">{{ message }}</p>
-                {% endfor %} 
-            {% endif %} 
-            {% endwith %}
-        </p>
-        <button type="submit">Login</button>
-    </form>
-    <p><a href="{{ url_for('register') }}">Back to Register</a></p>
+
+<body>
+  <form method="post">
+    <div class="imgcontainer">
+      <img src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/supportmale-512.png" alt="Avatar" class="avatar">
+      <h2>Admin Login</h2>
+    </div>
+  
+    <div class="container">
+      <label for="username"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="admin_username" required>
+  
+      <label for="password"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="admin_password" required>
+      <p>
+        {% with messages = get_flashed_messages() %} 
+          {% if messages %}
+              {% for message in messages %}
+              <p style="color: red;">{{ message }} </p>
+              {% endfor %}
+          {% endif %}   
+        {% endwith %}
+      </p>
+      <button type="submit">Login</button>
+    </div>
+  
+    <div class="container" style="background-color:#f1f1f1">
+      <a href="{{ url_for('login') }}">
+        <button type="button" class="switch">Normal Login</button>
+      </a>
+    </div>
+  </form>
 </body>
 </html>
