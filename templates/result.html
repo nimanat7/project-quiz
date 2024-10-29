@@ -7,12 +7,123 @@
     <title>Result</title>
 </head>
 <body style="background-color: #3a3a3ab0;">
-    <h1>Your Score: {{ score }} out of {{ total_questions }}</h1>
-    <a href="/user_question">Take another quiz</a>
+    <h1 style='margin-left: 10px;'>Your Score: {{ score }} out of {{ total_questions }}</h1>
+    <a style='margin-left: 25px;color: blue;' href="/user_question">Take another quiz</a>
+    {% for question in questions %}
+    <h2 style='margin-left: -5px;'><ul>{{ question.text }}</ul></h2>
+        <ul style='margin-left: 30px;'>
+            {% if stat_selected_option[question.id]=='1' %}
+                {% if question.correct_answer=='1' %}
+                    <li><label style="color: rgba(0, 255, 0, 0.733);" >{{ question.option1 }}</li>
+                    <li><label >{{ question.option2 }}</li>
+                    <li><label >{{ question.option3 }}</li>
+                    <li><label >{{ question.option4 }}</li>
+                {% endif %}
+                {% if question.correct_answer=='2' %}
+                    <li><label style="color: rgba(255, 0, 0, 0.733);">{{ question.option1 }}</li>
+                    <li><label style="color: rgba(0, 255, 0, 0.733);" >{{ question.option2 }}</li>
+                    <li><label >{{ question.option3 }}</li>
+                    <li><label >{{ question.option4 }}</li>
+                {% endif %}
+                {% if question.correct_answer=='3' %}
+                    <li><label style="color: rgba(255, 0, 0, 0.733);">{{ question.option1 }}</li>
+                    <li><label >{{ question.option2 }}</li>
+                    <li><label style="color: rgba(0, 255, 0, 0.733);" >{{ question.option3 }}</li>
+                    <li><label >{{ question.option4 }}</li>
+                {% endif %}
+                {% if question.correct_answer=='4' %}
+                    <li><label style="color: rgba(255, 0, 0, 0.733);">{{ question.option1 }}</li>
+                    <li><label >{{ question.option2 }}</li>
+                    <li><label >{{ question.option3 }}</li>
+                    <li><label style="color: rgba(0, 255, 0, 0.733);" >{{ question.option4 }}</li>
+                {% endif %}
+            {% endif %}
+
+            {% if stat_selected_option[question.id]=='2' %}
+                {% if question.correct_answer=='1' %}
+                    <li><label style="color: rgba(0, 255, 0, 0.733);" >{{ question.option1 }}</li>
+                    <li><label style="color: rgba(255, 0, 0, 0.733);">{{ question.option2 }}</li>
+                    <li><label >{{ question.option3 }}</li>
+                    <li><label >{{ question.option4 }}</li>
+                {% endif %}
+                {% if question.correct_answer=='2' %}
+                    <li><label >{{ question.option1 }}</li>
+                    <li><label style="color: rgba(0, 255, 0, 0.733);" >{{ question.option2 }}</li>
+                    <li><label >{{ question.option3 }}</li>
+                    <li><label >{{ question.option4 }}</li>
+                {% endif %}
+                {% if question.correct_answer=='3' %}
+                    <li><label >{{ question.option1 }}</li>
+                    <li><label style="color: rgba(255, 0, 0, 0.733);">{{ question.option2 }}</li>
+                    <li><label style="color: rgba(0, 255, 0, 0.733);" >{{ question.option3 }}</li>
+                    <li><label >{{ question.option4 }}</li>
+                {% endif %}
+                {% if question.correct_answer=='4' %}
+                    <li><label >{{ question.option1 }}</li>
+                    <li><label style="color: rgba(255, 0, 0, 0.733);">{{ question.option2 }}</li>
+                    <li><label >{{ question.option3 }}</li>
+                    <li><label style="color: rgba(0, 255, 0, 0.733);" >{{ question.option4 }}</li>
+                {% endif %}
+            {% endif %}
+
+            {% if stat_selected_option[question.id]=='3' %}
+                {% if question.correct_answer=='1' %}
+                    <li><label style="color: rgba(0, 255, 0, 0.733);" >{{ question.option1 }}</li>
+                    <li><label >{{ question.option2 }}</li>
+                    <li><label style="color: rgba(255, 0, 0, 0.733);">{{ question.option3 }}</li>
+                    <li><label >{{ question.option4 }}</li>
+                {% endif %}
+                {% if question.correct_answer=='2' %}
+                    <li><label >{{ question.option1 }}</li>
+                    <li><label style="color: rgba(0, 255, 0, 0.733);" >{{ question.option2 }}</li>
+                    <li><label style="color: rgba(255, 0, 0, 0.733);">{{ question.option3 }}</li>
+                    <li><label >{{ question.option4 }}</li>
+                {% endif %}
+                {% if question.correct_answer=='3' %}
+                    <li><label >{{ question.option1 }}</li>
+                    <li><label >{{ question.option2 }}</li>
+                    <li><label style="color: rgba(0, 255, 0, 0.733);" >{{ question.option3 }}</li>
+                    <li><label >{{ question.option4 }}</li>
+                {% endif %}
+                {% if question.correct_answer=='4' %}
+                    <li><label >{{ question.option1 }}</li>
+                    <li><label >{{ question.option2 }}</li>
+                    <li><label style="color: rgba(255, 0, 0, 0.733);">{{ question.option3 }}</li>
+                    <li><label style="color: rgba(0, 255, 0, 0.733);" >{{ question.option4 }}</li>
+                {% endif %}
+            {% endif %}
+            {% if stat_selected_option[question.id]=='4' %}
+                {% if question.correct_answer=='1' %}
+                    <li><label style="color: rgba(0, 255, 0, 0.733);" >{{ question.option1 }}</li>
+                    <li><label >{{ question.option2 }}</li>
+                    <li><label >{{ question.option3 }}</li>
+                    <li><label style="color: rgba(255, 0, 0, 0.733);">{{ question.option4 }}</li>
+                {% endif %}
+                {% if question.correct_answer=='2' %}
+                    <li><label >{{ question.option1 }}</li>
+                    <li><label style="color: rgba(0, 255, 0, 0.733);" >{{ question.option2 }}</li>
+                    <li><label >{{ question.option3 }}</li>
+                    <li><label style="color: rgba(255, 0, 0, 0.733);">{{ question.option4 }}</li>
+                {% endif %}
+                {% if question.correct_answer=='3' %}
+                    <li><label >{{ question.option1 }}</li>
+                    <li><label >{{ question.option2 }}</li>
+                    <li><label style="color: rgba(0, 255, 0, 0.733);" >{{ question.option3 }}</li>
+                    <li><label style="color: rgba(255, 0, 0, 0.733);">{{ question.option4 }}</li>
+                {% endif %}
+                {% if question.correct_answer=='4' %}
+                    <li><label >{{ question.option1 }}</li>
+                    <li><label >{{ question.option2 }}</li>
+                    <li><label >{{ question.option3 }}</li>
+                    <li><label style="color: rgba(0, 255, 0, 0.733);" >{{ question.option4 }}</li>
+                {% endif %}
+            {% endif %}
+        </ul>
+    {% endfor %}
 </body>
 </html>
 {% endblock %}
 {% block nav %}
-  <li><a href="/user_question">Start the quiz</a></li>
-  <li><a href="selectstats">Show stats</a></li>
+<li><a href="/user_question">Start the quiz</a></li>
+<li><a href="/selectstats">Show stats</a></li>
 {% endblock %}

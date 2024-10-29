@@ -77,11 +77,11 @@ def add_question():
         logout_user()
         return redirect(url_for("admin_login"))
     if request.method == 'POST':
-        text = request.form['text']
-        option1 = request.form['option1']
-        option2 = request.form['option2']
-        option3 = request.form['option3']
-        option4 = request.form['option4']
+        text = (request.form['text']).strip()
+        option1 = (request.form['option1']).strip()
+        option2 = (request.form['option2']).strip()
+        option3 = (request.form['option3']).strip()
+        option4 = (request.form['option4']).strip()
         correct_answer = request.form['correct_answer']
         category=request.form['category']
 
@@ -125,11 +125,11 @@ def edit_question(question_id):
         edit_category=row[7]
     try:
         if request.form ['submit_button']=='Save changes':
-            text = request.form['text']
-            option1 = request.form['option1']
-            option2 = request.form['option2']
-            option3 = request.form['option3']
-            option4 = request.form['option4']
+            text = (request.form['text']).strip()
+            option1 = (request.form['option1']).strip()
+            option2 = (request.form['option2']).strip()
+            option3 = (request.form['option3']).strip()
+            option4 = (request.form['option4']).strip()
             correct_answer = request.form['correct_answer']
             category = request.form['category']
             conn.execute('''UPDATE question SET text = ?, option1 = ?, option2 = ?, option3 = ?, option4 = ?, correct_answer = ?,  category = ? WHERE id = ?''',(text, option1,option2,option3,option4,correct_answer,category,question_id))
@@ -197,7 +197,6 @@ def createuser_sqlite_db(userfor):
 
 
 # Registration
-@app.route("/", methods=["GET", "POST"])
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -306,6 +305,18 @@ def login():
 
     return render_template("login.html")
 
+@app.route("/")
+@app.route("/home")
+def home():
+    if not current_user.is_authenticated:
+        return render_template("home.html")
+    else:
+        if session.get("is_admin"):
+            return redirect(url_for("admin_dashboard"))
+        else:
+            return redirect(url_for("dashboard"))
+
+        
 
 @app.route("/dashboard")
 @login_required
@@ -390,9 +401,9 @@ def quiz():
         for question in questions:
             question_random.append(question.id)
         random_choice=random.sample(question_random,k=num_questions)
-
-        questions = Question.query.filter(Question.id.in_(random_choice)).all()
-        return render_template('quiz.html', questions=questions)
+        global questions_choose
+        questions_choose = Question.query.filter(Question.id.in_(random_choice)).all()
+        return render_template('quiz.html', questions=questions_choose)
 
 @app.route('/result', methods=['POST'])
 @login_required
@@ -403,12 +414,13 @@ def result():
         return redirect(url_for("login"))
        score = 0
        total_questions = len(request.form)
+       stat_selected_option=dict()
        for key in request.form:
            if key.startswith('question_'):
                question_id = key.split('_')[1]
                selected_option = request.form[key]
                question = Question.query.get(question_id)
-               print(selected_option)
+               stat_selected_option[question.id]=(selected_option)
                if selected_option == question.correct_answer:
                    score += 1
        datetime_=datetime.now()
@@ -424,7 +436,7 @@ def result():
        conn.close()
        score=int(score)
        total_questions=int(total_questions)
-       return render_template('result.html', score=score, total_questions=total_questions)
+       return render_template('result.html', score=score, total_questions=total_questions, questions=questions_choose,stat_selected_option=stat_selected_option)
 
 @app.route('/stats/<category>')
 def stats(category):
@@ -460,7 +472,5 @@ def select_stats():
         return redirect(f'/stats/{category}')
     return render_template('selectstats.html')
 
-
 if __name__ == '__main__':
         app.run(debug=True)
-

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to Quiz World</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+          url("https://i.pinimg.com/originals/70/17/3d/70173db495a647200ab70cfe5f6182dd.jpg")
+            no-repeat center center;
+        background-size: cover;
+        color: white;
+      }
+      .container {
+        text-align: center;
+      }
+      h1 {
+        padding-bottom: 300px;
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+      p {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+      }
+      .button {
+        text-decoration: none;
+        color: white;
+        background-color: #007bff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 1.2rem;
+      }
+      .button:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Welcome to the World of Quizzes</h1>
+      <p>Test your knowledge and enjoy our fun quizzes!</p>
+      <a href="{{ url_for('login') }}" class="button">Login</a>
+    </div>
+  </body>
+</html>

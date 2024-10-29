@@ -12,10 +12,12 @@
         {% for question in questions %}
             <div>
                 <p>{{ question.text }}</p>
-                <input type="radio" name="question_{{ question.id }}" value="1"> {{ question.option1 }}<br>
-                <input type="radio" name="question_{{ question.id }}" value="2"> {{ question.option2 }}<br>
-                <input type="radio" name="question_{{ question.id }}" value="3"> {{ question.option3 }}<br>
-                <input type="radio" name="question_{{ question.id }}" value="4"> {{ question.option4 }}<br><br>
+                <div class="btn-group-vertical" role="group" aria-label="Vertical radio toggle button group">
+                    <input type="radio" name="question_{{ question.id }}" value="1" required> {{ question.option1 }}<br>
+                    <input type="radio" name="question_{{ question.id }}" value="2"> {{ question.option2 }}<br>
+                    <input type="radio" name="question_{{ question.id }}" value="3"> {{ question.option3 }}<br>
+                    <input type="radio" name="question_{{ question.id }}" value="4"> {{ question.option4 }}<br><br>
+                </div>
             </div>
             {% endfor %}
             <button type="submit">Submit</button>
@@ -25,7 +27,7 @@
 {% endblock %}
 {% block nav %}
 <li><a href="/user_question">Start the quiz</a></li>
-<li><a href="selectstats">Show stats</a></li>
+<li><a href="/selectstats">Show stats</a></li>
 {% endblock %}
     
 
